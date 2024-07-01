@@ -1,7 +1,16 @@
 const express = require('express')
 const app = express()
 const bodyparser = require('body-parser')
+const connection = require('./database/database')
+const Pergunta = require('./database/Pegunta')
 const port = 3000
+
+connection.authenticate()
+        .then(() =>{
+            console.log("Banco de dados conectad com sucesso")
+        }).catch((msgErro) =>{
+            console.log(msgErro)
+        })
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
